@@ -1,22 +1,158 @@
-body { margin: 0; padding: 40px; font-family: Arial, sans-serif; background-color: #f7f7f7; color: #222; }
-h1 { text-align: center; margin-bottom: 15px; }
-.description { max-width: 700px; margin: 0 auto 20px auto; text-align: center; line-height: 1.5; }
-.insight { max-width: 850px; margin: 0 auto 25px auto; padding: 12px 16px; background: white;
-  border-left: 3px solid steelblue; line-height: 1.5; font-size: 14px; }
-#yearControl { text-align: center; margin-bottom: 20px; font-size: 14px; }
-input[type=range] { width: 260px; vertical-align: middle; margin-left: 10px; }
-#vis, #map { display: flex; justify-content: center; background: white; border: 1px solid #ddd; padding: 20px; }
-.caption { max-width: 800px; margin: 8px auto 0 auto; font-size: 13px; color: #555; text-align: center; }
-.point { stroke: white; stroke-width: 0.7px; opacity: 0.7; }
-.axis path, .axis line { stroke: #333; shape-rendering: crispEdges; }
-.axis text { font-size: 12px; }
-.labels { font-size: 14px; font-weight: bold; }
-.legend-label { font-size: 13px; }
-#tooltip { position: absolute; display: none; background: white; border: 1px solid #999; padding: 8px 10px;
-  font-size: 13px; line-height: 1.4; pointer-events: none; z-index: 10; }
-.writeup { max-width: 850px; margin: 40px auto 0 auto; line-height: 1.55; font-size: 15px; }
-.writeup h2 { border-top: 1px solid #ccc; padding-top: 24px; }
-.writeup h3 { margin-bottom: 4px; }
-.writeup p { margin-top: 4px; }
-#map { margin-top: 25px; }
-.dot { stroke: #444; stroke-width: 0.6px; vector-effect: non-scaling-stroke; }
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: white;
+    color: black;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 25px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+h2 {
+    margin-top: 35px;
+    margin-bottom: 10px;
+}
+
+h3 {
+    margin-top: 22px;
+}
+
+.description {
+    text-align: center;
+    line-height: 1.5;
+    margin-bottom: 25px;
+}
+
+#controls {
+    background-color: white;
+    padding: 15px 20px;
+    margin-bottom: 25px;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+}
+
+#dateValue {
+    font-weight: bold;
+    margin-top: 0;
+}
+
+#slider {
+    max-width: 100%;
+    overflow: hidden;
+}
+
+#slider svg {
+    max-width: 100%;
+    display: block;
+}
+
+label {
+    margin-right: 8px;
+}
+
+.variable {
+    padding: 6px;
+    margin: 8px 0;
+    font-size: 14px;
+}
+
+#vis,
+#map {
+    background-color: white;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    padding: 10px;
+    overflow: hidden;
+}
+
+#vis svg,
+#map svg {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.axis path,
+.axis line {
+    stroke: gray;
+}
+
+.axis text {
+    font-size: 12px;
+    fill: black;
+}
+
+.labels {
+    font-size: 14px;
+    fill: black;
+}
+
+.points {
+    cursor: pointer;
+    stroke: none;
+}
+
+.legendSquare {
+    stroke: none;
+}
+
+.legendName {
+    font-size: 12px;
+}
+
+.stateFill {
+    fill: lightgray;
+    stroke: none;
+}
+
+.stateBorders {
+    fill: none;
+    stroke: lightgray;
+    stroke-width: 0.7px;
+    pointer-events: none;
+}
+
+.mapPoint {
+    cursor: pointer;
+    stroke: white;
+    stroke-width: 0.5px;
+}
+
+.caption {
+    font-size: 14px;
+    color: gray;
+    line-height: 1.5;
+    margin-top: 10px;
+}
+
+#tooltip {
+    position: absolute;
+    display: none;
+    background-color: white;
+    border: 1px solid gray;
+    border-radius: 4px;
+    padding: 10px;
+    font-size: 12px;
+    line-height: 1.6;
+    max-width: 260px;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.writeup {
+    background-color: white;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    padding: 20px;
+    margin-top: 40px;
+    line-height: 1.6;
+}
