@@ -43,9 +43,24 @@
         <h2>About this visualization</h2>
 
         <h3>Dataset</h3>
-        <p>[TODO]</p>
-
+        <br>
+        <p>
+            Our dataset is Daily Weather in the U.S., 2017, which contains daily U.S. weather measurements provided
+            by the NOAA Daily Global Historical Climatology Network. It covers stations across the 
+            50 states, D.C., and U.S. territories, with one row per station per day from
+            January 1 through September 21, 2017. Each row includes the station's location and elevation along with
+            daily temperature, precipitation, wind, and snow readings, as described in weather.txt.
+        </p>
+        <br>
+        <p>
+            We focused on a subset of these variables: average temperature (TAVG, or the midpoint of TMIN and TMAX
+            when TAVG is missing), daily temperature range (TMAX − TMIN), precipitation (PRCP), and average wind
+            speed (AWND). Our question was how temperature relates to precipitation and wind across different parts
+            of the country, and how that relationship shifts as the seasons change. Missing values and NOAA's
+            placeholder codes (−9999) are treated as no data, and stations without a valid location are left out.
+        </p>
         <h3>Interactions</h3>
+        <br>
         <ul>
             <li><strong>Dynamic filter (Category I):</strong> a date slider that filters the data to one date at a
                 time. The slider has September 21st as the last date because the csv file with the weather data does not contain data beyond that date.</li>
@@ -53,12 +68,51 @@
                 crowded regions like the Northeast and get a better idea for where exactly the data points are.</li>
             <li><strong>Details on demand (Category II):</strong> tooltips on both charts showing station name, state,
                 region, and values.</li>
+            <li><strong>X-axis selector:</strong> a dropdown to switch the bubble chart's x-axis between average
+                precipitation and average wind speed.</li>
         </ul>
 
         <h3>Design rationale</h3>
-        <p>[TODO]</p>
+        <br>
+        <p>
+            We wanted to compare several weather variables at once, so we built on the Gapminder-style bubble chart
+            from Labs 4 and 5. Average temperature is on the y-axis because it is the main variable we care about,
+            and position is the most accurate way to show it. The x-axis holds the variable we compare it against,
+            either precipitation or wind. Bubble size shows the daily temperature range, so larger bubbles mean a
+            bigger gap between the day's high and low. We scaled the bubbles by area rather than width, which keeps
+            larger values from looking more extreme than they really are. In the bubble chart, color shows the
+            station's U.S. Census region, which makes geographic clusters visible without a separate chart. Since
+            about 1,600 stations can overlap, the bubbles are semi-transparent so that dense areas look darker.
+        </p>
+        <br>
+        <p>
+            The bubble chart shows each station's region but not its exact location, so we added a second view: a
+            station map using an Albers USA projection. Because the map already shows where each station is, we used
+            color for something else there. On the map, dots are colored by average temperature on a red-to-blue
+            scale, since people already read red as hot and blue as cold. We fixed the scale at 0–100°F instead of
+            re-scaling it every day. That way each color means the same temperature all year, and you can see the
+            seasons change as the map shifts from blue to red.
+        </p>
+         <br>
+        <p>
+            We used a slider because the dates are ordered, and dragging it lets you watch the year play out. For
+            the x-axis we chose a dropdown instead of putting precipitation and wind in two side-by-side charts,
+            which kept the page simpler and let both variables share one set of axes. We added pan and zoom to the
+            map because stations in the Northeast and along the coasts are packed too tightly to hover over one at a
+            time. Tooltips give exact values without crowding the charts with labels.
+        </p>
+        <br>
+        <p>
+            We also considered other approaches. Our first idea was a line chart of temperature over time, but with
+            hundreds of stations it would have turned into a tangle of lines, and it couldn't show how two variables
+            relate. We thought about showing temperature range with color, but region was more useful as color, and
+            range worked naturally as size. For the map we considered shading whole states. Averaging stations by
+            state would hide differences within large states like California and Texas, though, so we kept
+            individual station dots.
+        </p>
 
         <h3>Data sources and references</h3>
+        <br>
         <ul>
             <li>NOAA Daily Global Historical Climatology Network, 2017 for weather.csv.</li>
             <li>D3.js v7 documentation.</li>
@@ -66,10 +120,22 @@
         </ul>
 
         <h3>Development process</h3>
-        <p>[TODO]</p>
-
+        <br>
+        <p>
+            Harini and Nithya wrote the visualization code, including the bubble chart, the map, and the
+            interactions, with help from Sammi. Sammi worked on the page styling and HTML layout, wrote this
+            write-up and recorded the demo video with input from Harini and Nithya. We spent roughly 15–20 people-hours in total. The parts
+            that took the most time were cleaning the data (handling missing values and NOAA's placeholder codes),
+            getting the date slider to update both charts together with smooth transitions, and setting up the map
+            projection and zoom so the dots stayed readable at different zoom levels.
+        </p>
+ 
         <h3>AI usage</h3>
-        <p>[TODO]</p>
+        <br>
+        <p>
+            We used AI tools to brainstorm ideas for the visualization and interactions, and as a starting point for 
+            drafting this write-up, which we then reviewed and edited ourselves.
+        </p>
         
     </section>
 
